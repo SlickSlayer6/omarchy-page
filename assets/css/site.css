@@ -88,11 +88,6 @@ img {
     color var(--transition);
 }
 
-.notification s {
-  text-decoration: line-through;
-}
-
-
 /* Compact bar. The ASCII wordmark lives here as a CSS mask of the official
    vector, so it recolors with the theme and no longer eats the fold. */
 
@@ -204,6 +199,7 @@ img {
 
 .bar__theme-name {
   color: var(--color-bright);
+  display: none;
   font-size: var(--font-size-small);
   font-weight: 600;
   padding-inline: 0.35em;
@@ -224,10 +220,10 @@ img {
   box-shadow: none;
   cursor: pointer;
   display: grid;
-  height: 1.85em;
+  height: 2.15em;
   justify-items: center;
   padding: 0;
-  width: 1.85em;
+  width: 2.15em;
 }
 
 .switcher__dot::after {
@@ -265,6 +261,18 @@ img {
   margin-bottom: var(--space-x-large);
   max-width: 44em;
   text-align: center;
+}
+
+.hero__wordmark {
+  background: var(--color-green);
+  display: block;
+  height: clamp(3.6rem, 8vw, 6.4rem);
+  margin-bottom: var(--space-neutral);
+  margin-inline: auto;
+  mask: url('../images/brand/omarchy-wordmark-mask.svg') center / contain no-repeat;
+  -webkit-mask: url('../images/brand/omarchy-wordmark-mask.svg') center / contain no-repeat;
+  transition: background var(--transition);
+  width: min(82vw, 31rem);
 }
 
 .hero h1 {
@@ -386,7 +394,12 @@ img {
   padding-bottom: var(--space-xx-large);
 }
 
-.beat h2 {
+.beat {
+  display: grid;
+  gap: var(--space-medium);
+}
+
+.beat__copy h2 {
   color: var(--color-green);
   font-size: var(--font-size-small);
   font-weight: 700;
@@ -395,15 +408,18 @@ img {
   text-transform: uppercase;
 }
 
-.beat p {
+.beat__copy > p:not(.beat__links) {
   margin-bottom: var(--space-medium);
   max-width: 36em;
   text-wrap: pretty;
 }
 
-.beat__more {
-  display: inline-block;
+.beat__links {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
   font-size: var(--font-size-small);
+  gap: 0.65em;
   margin-top: var(--space-small);
 }
 
@@ -699,6 +715,10 @@ kbd {
 
 @media (min-width: 40em) {
 
+  .bar__theme-name {
+    display: inline;
+  }
+
   .keys div {
     grid-template-columns: 16em 1fr;
   }
@@ -739,8 +759,35 @@ kbd {
   }
 
   .beats {
-    gap: var(--space-large);
-    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .beat {
+    align-items: center;
+    border-top: var(--border-width) solid var(--border-color);
+    gap: var(--space-xx-large);
+    grid-template-columns: minmax(14rem, 0.75fr) minmax(0, 1.45fr);
+    padding-block: var(--space-xx-large);
+  }
+
+  .beat:nth-child(even) {
+    grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 0.75fr);
+  }
+
+  .beat:nth-child(even) .beat__copy {
+    order: 2;
+  }
+
+  .beat:nth-child(even) .beat__visual {
+    order: 1;
+  }
+
+  .desks {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .desks a:last-child {
+    grid-column: auto;
   }
 
 }

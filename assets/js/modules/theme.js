@@ -52,6 +52,7 @@ function apply(theme, persist = true) {
   for (const button of document.querySelectorAll('[data-theme-set]')) {
     const on = button.dataset.themeSet === theme;
     button.setAttribute('aria-checked', on ? 'true' : 'false');
+    button.tabIndex = on ? 0 : -1;
   }
 
   if (persist) {
@@ -74,8 +75,31 @@ function ready() {
   const current = document.documentElement.dataset.theme || boot();
   apply(current, false);
 
-  for (const button of document.querySelectorAll('[data-theme-set]')) {
+  const buttons = [...document.querySelectorAll('[data-theme-set]')];
+
+  for (const button of buttons) {
     button.addEventListener('click', () => apply(button.dataset.themeSet));
+    button.addEventListener('keydown', (event) => {
+      const currentIndex = buttons.indexOf(button);
+      let nextIndex;
+
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+        nextIndex = (currentIndex + 1) % buttons.length;
+      } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+        nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+      } else if (event.key === 'Home') {
+        nextIndex = 0;
+      } else if (event.key === 'End') {
+        nextIndex = buttons.length - 1;
+      } else {
+        return;
+      }
+
+      event.preventDefault();
+      const next = buttons[nextIndex];
+      apply(next.dataset.themeSet);
+      next.focus();
+    });
   }
 
   if ('requestIdleCallback' in window) {
