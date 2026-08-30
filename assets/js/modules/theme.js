@@ -25,7 +25,7 @@ function boot() {
 }
 
 function desktopSrc(theme) {
-  return `/assets/images/desktop/${theme}.webp`;
+  return new URL(`../../images/desktop/${theme}.webp`, import.meta.url).href;
 }
 
 function apply(theme, persist = true) {
