@@ -1,0 +1,776 @@
+html {
+  color-scheme: dark;
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: 300;
+  line-height: var(--line-height);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+a {
+  color: var(--color-link);
+  font-weight: 700;
+  text-decoration-thickness: 0.0875em;
+  text-underline-offset: 0.125em;
+  transition: color var(--transition);
+}
+
+b,
+strong {
+  font-weight: 700;
+}
+
+i,
+em {
+  font-style: italic;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.skip {
+  background: var(--color-accent);
+  color: var(--color-background);
+  font-weight: 700;
+  left: var(--space-medium);
+  padding: var(--space-small) var(--space-medium);
+  position: absolute;
+  text-decoration: none;
+  top: -4em;
+  z-index: 20;
+}
+
+.skip:focus {
+  top: var(--space-medium);
+}
+
+
+/* News strip. Scrolls away; the bar below is the thing that sticks. */
+
+.notification a {
+  background: var(--color-accent);
+  color: var(--color-background);
+  display: block;
+  font-weight: 700;
+  padding: 0.6em var(--gutter);
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+
+.notification s {
+  text-decoration: line-through;
+}
+
+
+/* Compact bar. The ASCII wordmark lives here as a CSS mask of the official
+   vector, so it recolors with the theme and no longer eats the fold. */
+
+.bar {
+  align-items: center;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgb(var(--rgb-background) / 0.88);
+  border-bottom: var(--border-width) solid var(--border-color);
+  display: grid;
+  gap: var(--space-medium);
+  grid-template-columns: auto 1fr auto;
+  padding: 0.7em var(--gutter);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.bar__brand {
+  color: var(--color-green);
+  display: flex;
+  text-decoration: none;
+}
+
+.bar__logo,
+.bar__wordmark {
+  background: currentColor;
+  display: block;
+}
+
+.bar__logo {
+  height: 1.7em;
+  mask: url('../images/brand/omarchy-logo-mask.svg') center / contain no-repeat;
+  -webkit-mask: url('../images/brand/omarchy-logo-mask.svg') center / contain no-repeat;
+  width: 1.7em;
+}
+
+.bar__wordmark {
+  height: 1.7em;
+  mask: url('../images/brand/omarchy-wordmark-mask.svg') center / contain no-repeat;
+  -webkit-mask: url('../images/brand/omarchy-wordmark-mask.svg') center / contain no-repeat;
+  width: 7.4em;
+}
+
+.bar__links {
+  display: none;
+  gap: 1.25em;
+  justify-self: start;
+}
+
+.bar__links a {
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.bar__more {
+  justify-self: end;
+  position: relative;
+}
+
+.bar__more summary {
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.bar__more summary::-webkit-details-marker {
+  display: none;
+}
+
+.bar__more-panel {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--window-shadow);
+  display: grid;
+  gap: 0.75em;
+  min-width: 12em;
+  padding: var(--space-medium);
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.6em);
+}
+
+.bar__more-panel a {
+  color: var(--color-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+/* Theme name + dots sit together on the right of the bar. */
+
+.bar__theme {
+  align-items: center;
+  display: flex;
+  gap: 0.15em;
+  justify-self: end;
+  min-width: 0;
+}
+
+.bar__theme-name {
+  color: var(--color-bright);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  padding-inline: 0.35em;
+  white-space: nowrap;
+}
+
+/* Theme dots. Each swatch is a characteristic color, not the shared accent,
+   so Tokyo Night and Catppuccin don't both read as "the blue one". */
+
+.switcher {
+  display: flex;
+}
+
+.switcher__dot {
+  align-items: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  display: grid;
+  height: 1.85em;
+  justify-items: center;
+  padding: 0;
+  width: 1.85em;
+}
+
+.switcher__dot::after {
+  background: var(--dot);
+  border-radius: 99px;
+  box-shadow: inset 0 0 0 1px rgb(var(--rgb-bright) / 0.25);
+  content: "";
+  height: 0.8em;
+  width: 0.8em;
+}
+
+.switcher__dot[aria-checked="true"]::after {
+  box-shadow:
+    0 0 0 2px var(--color-background),
+    0 0 0 3.5px var(--dot);
+}
+
+
+.wrap {
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  width: min(100%, var(--measure));
+}
+
+
+/* Hero */
+
+.hero {
+  padding-bottom: var(--space-x-large);
+  padding-top: var(--space-x-large);
+}
+
+.hero__copy {
+  margin-inline: auto;
+  margin-bottom: var(--space-x-large);
+  max-width: 44em;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.hero__sub {
+  font-style: italic;
+  font-weight: 300;
+  margin-inline: auto;
+  margin-top: var(--space-medium);
+  max-width: 38em;
+  text-wrap: pretty;
+}
+
+.hero__sub a,
+.hero__sub a:hover {
+  color: inherit;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75em;
+  justify-content: center;
+  margin-top: var(--space-neutral);
+}
+
+.button {
+  align-items: center;
+  background: var(--color-accent);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow:
+    0 1px 0 0 rgb(var(--rgb-black) / 0.1),
+    0 0.2em 1.2em -0.4em rgb(var(--rgb-black) / 0.2),
+    0 0.4em 2em -0.8em rgb(var(--rgb-black) / 0.3);
+  color: var(--color-background);
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 700;
+  gap: 1ch;
+  height: 2.9em;
+  line-height: 1;
+  padding-inline: var(--space-medium);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    box-shadow var(--transition);
+}
+
+.button svg {
+  fill: currentColor;
+  height: 1.35em;
+  overflow: visible;
+  width: 1.35em;
+}
+
+.button--ghost {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--color-accent);
+  color: var(--color-accent);
+}
+
+
+/* The desktop shot is a tiled window: gap, thin accent border, no fake
+   titlebar. Theme switches recolor the page and swap this image. */
+
+.desktop {
+  margin-inline: auto;
+  width: min(100%, var(--measure));
+}
+
+.desktop__window {
+  background: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  box-shadow: var(--window-shadow);
+  overflow: hidden;
+}
+
+.desktop__window img {
+  aspect-ratio: 1800 / 1012;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.desktop__meta {
+  margin-top: 0.85em;
+  padding-inline: 0.15em;
+}
+
+.desktop__caption {
+  color: rgb(var(--rgb-text) / 0.7);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+}
+
+.desktop__caption strong {
+  color: var(--color-bright);
+  font-weight: 600;
+}
+
+
+
+
+/* Beautiful / Fun / Opinionated */
+
+.beats {
+  align-items: start;
+  display: grid;
+  gap: var(--space-xx-large);
+  padding-bottom: var(--space-xx-large);
+}
+
+.beat h2 {
+  color: var(--color-green);
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.7em;
+  text-transform: uppercase;
+}
+
+.beat p {
+  margin-bottom: var(--space-medium);
+  max-width: 36em;
+  text-wrap: pretty;
+}
+
+.beat__more {
+  display: inline-block;
+  font-size: var(--font-size-small);
+  margin-top: var(--space-small);
+}
+
+.thumbs,
+.desks {
+  display: grid;
+  gap: 0.45em;
+  min-width: 0;
+}
+
+.thumbs {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.desks {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.thumbs a,
+.desks a {
+  border-radius: var(--radius);
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.desks a:last-child {
+  grid-column: 1 / -1;
+}
+
+.thumbs img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.desks img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.keys {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius);
+  display: grid;
+  gap: 0.65em;
+  padding: var(--space-medium);
+}
+
+.keys div {
+  display: grid;
+  gap: 0.35em 1em;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.keys dt {
+  color: var(--color-bright);
+  font-weight: 600;
+}
+
+.keys dd {
+  color: rgb(var(--rgb-text) / 0.8);
+  font-size: var(--font-size-small);
+}
+
+kbd {
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: 0.25em;
+  color: var(--color-bright);
+  font-size: 0.92em;
+  font-weight: 600;
+  padding: 0.05em 0.35em;
+}
+
+
+/* Videos sit under the product, not in place of it. */
+
+.watch {
+  display: grid;
+  gap: var(--space-large);
+  padding-bottom: var(--space-xx-large);
+}
+
+.watch iframe,
+.video__facade {
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--window-shadow);
+  display: block;
+  overflow: hidden;
+  width: 100%;
+}
+
+.video__facade {
+  background: var(--color-surface);
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+
+.video__facade img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition);
+  width: 100%;
+}
+
+.video__play {
+  align-items: center;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+.video__play svg {
+  filter: drop-shadow(0 0.1em 0.5em rgb(var(--rgb-black) / 0.5));
+  opacity: 0.85;
+  transition: opacity var(--transition);
+  width: min(14%, 6em);
+}
+
+.video figcaption {
+  color: rgb(var(--rgb-text) / 0.75);
+  font-size: var(--font-size-small);
+  margin-top: 0.7em;
+}
+
+
+/* The fourteen buttons, demoted to a directory. */
+
+.directory {
+  border-top: var(--border-width) solid var(--border-color);
+  display: grid;
+  gap: var(--space-x-large);
+  padding-bottom: var(--space-x-large);
+  padding-top: var(--space-x-large);
+}
+
+.directory h2 {
+  color: var(--color-green);
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.85em;
+  text-transform: uppercase;
+}
+
+.directory ul {
+  display: grid;
+  gap: 0.55em;
+}
+
+.directory a {
+  color: var(--color-text);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+
+.footer {
+  border-top: var(--border-width) solid var(--border-color);
+  color: rgb(var(--rgb-text) / 0.75);
+  display: grid;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  gap: var(--space-medium);
+  padding-bottom: var(--space-xx-large);
+  padding-top: var(--space-large);
+  text-align: center;
+}
+
+.footer p {
+  text-wrap: pretty;
+}
+
+.wink {
+  color: var(--color-green);
+  font-style: italic;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+
+/* Inner pages wear the same bar. Content is a narrow column. */
+
+.page-head {
+  padding-bottom: var(--space-large);
+  padding-top: var(--space-xx-large);
+}
+
+.page-head h1 {
+  font-size: var(--font-size-large);
+  font-weight: 400;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.page-head p {
+  font-style: italic;
+  margin-top: var(--space-medium);
+  max-width: 40em;
+}
+
+.prose {
+  font-weight: 400;
+  max-width: 42em;
+  padding-bottom: var(--space-xx-large);
+}
+
+.prose h2 {
+  color: var(--color-green);
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+  margin-bottom: 0.6em;
+  margin-top: var(--space-x-large);
+}
+
+.prose p,
+.prose li {
+  margin-bottom: 1em;
+}
+
+.prose ul {
+  list-style: disc;
+  padding-left: 1.2em;
+}
+
+.prose code {
+  background: var(--color-surface);
+  border-radius: 0.25em;
+  color: var(--color-bright);
+  font-size: 0.95em;
+  padding: 0.1em 0.35em;
+}
+
+
+@media (hover: hover) {
+
+  a:hover {
+    color: var(--color-white);
+  }
+
+  .notification a:hover {
+    background: var(--color-hover);
+    color: var(--color-background);
+  }
+
+  .bar__brand:hover {
+    color: var(--color-hover);
+  }
+
+  .bar__links a:hover,
+  .bar__more-panel a:hover,
+  .directory a:hover {
+    color: var(--color-white);
+  }
+
+  .button:hover {
+    background: var(--color-hover);
+    color: var(--color-background);
+  }
+
+  .button--ghost:hover {
+    background: var(--color-accent);
+    color: var(--color-background);
+  }
+
+  .thumbs a:hover img,
+  .desks a:hover img,
+  .video__facade:hover img {
+    transform: scale(1.03);
+  }
+
+  .video__facade:hover .video__play svg {
+    opacity: 1;
+  }
+
+  .wink:hover {
+    color: var(--color-hover);
+  }
+
+  .switcher__dot:hover::after {
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 3.5px var(--dot);
+  }
+
+}
+
+
+@media (min-width: 40em) {
+
+  .keys div {
+    grid-template-columns: 16em 1fr;
+  }
+
+}
+
+
+@media (min-width: 52em) {
+
+  .bar__logo {
+    display: none;
+  }
+
+  .bar__links {
+    display: flex;
+  }
+
+  .bar__more {
+    display: none;
+  }
+
+  .watch {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .directory {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-large);
+  }
+
+}
+
+
+@media (min-width: 64em) {
+
+  .hero {
+    padding-top: var(--space-xx-large);
+  }
+
+  .beats {
+    gap: var(--space-large);
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+}
+
+
+@media (max-width: 51.98em) {
+
+  .bar__wordmark {
+    display: none;
+  }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+
+  .thumbs a:hover img,
+  .desks a:hover img,
+  .video__facade:hover img {
+    transform: none;
+  }
+
+}

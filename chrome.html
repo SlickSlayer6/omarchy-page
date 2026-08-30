@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" data-theme="catppuccin">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Inner-page chrome — Omarchy</title>
+    <meta name="description" content="How inner pages inherit the homepage chrome.">
+    <meta name="theme-color" content="#1e1e2e">
+    <meta name="robots" content="noindex">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/assets/css/root.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+
+    <script>
+      (function () {
+        var allowed = ['catppuccin', 'tokyo-night', 'nord', 'everforest', 'retro-82'];
+        var theme = 'catppuccin';
+        try {
+          var query = new URLSearchParams(location.search).get('theme');
+          var stored = localStorage.getItem('omarchy-homepage-theme');
+          if (allowed.indexOf(query) !== -1) theme = query;
+          else if (allowed.indexOf(stored) !== -1) theme = stored;
+        } catch (e) {}
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    <script src="/assets/js/script.js" type="module"></script>
+  </head>
+
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+
+    <header class="bar">
+      <a class="bar__brand" href="/" aria-label="Omarchy">
+        <span class="bar__logo" aria-hidden="true"></span>
+        <span class="bar__wordmark" aria-hidden="true"></span>
+      </a>
+
+      <nav class="bar__links" aria-label="Primary">
+        <a href="https://omarchy.org/manual/">Manual</a>
+        <a href="https://omarchy.org/news/">News</a>
+        <a href="https://github.com/omacom/omarchy">GitHub</a>
+        <a href="https://discord.gg/tXFUdasqhY">Discord</a>
+      </nav>
+
+      <div class="bar__theme">
+        <span class="bar__theme-name" data-theme-name aria-hidden="true">catppuccin</span>
+        <div class="switcher" role="radiogroup" aria-label="Desktop theme">
+          <button class="switcher__dot" type="button" role="radio" aria-checked="true" data-theme-set="catppuccin" style="--dot:#cba6f7" title="Catppuccin">
+            <span class="visually-hidden">Catppuccin</span>
+          </button>
+          <button class="switcher__dot" type="button" role="radio" aria-checked="false" data-theme-set="tokyo-night" style="--dot:#7aa2f7" title="Tokyo Night">
+            <span class="visually-hidden">Tokyo Night</span>
+          </button>
+          <button class="switcher__dot" type="button" role="radio" aria-checked="false" data-theme-set="nord" style="--dot:#88c0d0" title="Nord">
+            <span class="visually-hidden">Nord</span>
+          </button>
+          <button class="switcher__dot" type="button" role="radio" aria-checked="false" data-theme-set="everforest" style="--dot:#a7c080" title="Everforest">
+            <span class="visually-hidden">Everforest</span>
+          </button>
+          <button class="switcher__dot" type="button" role="radio" aria-checked="false" data-theme-set="retro-82" style="--dot:#faa968" title="Retro 82">
+            <span class="visually-hidden">Retro 82</span>
+          </button>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          var theme = document.documentElement.dataset.theme;
+          if (!theme) return;
+          document.querySelectorAll('[data-theme-name]').forEach(function (el) {
+            el.textContent = theme;
+          });
+        })();
+      </script>
+
+      <details class="bar__more">
+        <summary>Menu</summary>
+        <div class="bar__more-panel">
+          <a href="/">Home</a>
+          <a href="https://omarchy.org/manual/">Manual</a>
+          <a href="https://omarchy.org/news/">News</a>
+          <a href="https://github.com/omacom/omarchy">GitHub</a>
+          <a href="https://discord.gg/tXFUdasqhY">Discord</a>
+        </div>
+      </details>
+    </header>
+
+    <main id="content" class="wrap">
+      <header class="page-head">
+        <h1>How inner pages inherit this chrome</h1>
+        <p>A note that goes with the homepage redesign. Not a second product. The homepage is the piece; this is how the rest of omarchy.org would wear it.</p>
+      </header>
+
+      <article class="prose">
+        <p>Inner pages today all open with the full ASCII mural, then a one-line header, then the content. That mark is the brand, and it should stay the brand — just not as a ten-line billboard above every manual chapter, news post, and team roster. It eats the fold on a phone, and it keeps the actual page from starting.</p>
+
+        <h2>What carries over</h2>
+        <ul>
+          <li>The compact bar: wordmark, a handful of text links, optional theme dots. This page is wearing it.</li>
+          <li>The CSS variables in <code>root.css</code>. Catppuccin is the default. A later theme pass is <code>data-theme</code> on <code>&lt;html&gt;</code>, not a restyle of every article.</li>
+          <li>JetBrains Mono, the radius, the buttons, the notification strip when there’s news.</li>
+        </ul>
+
+        <h2>What does not get redesigned here</h2>
+        <ul>
+          <li>The manual’s sidebar, search, and pagination.</li>
+          <li>The news cards.</li>
+          <li>The extra-themes screenshot grid.</li>
+          <li>The workstations lightbox.</li>
+          <li>Teams, patrons, meetups, security, AIR.</li>
+        </ul>
+        <p>Those layouts are fine. They swap the mural for this bar, keep their existing <code>h1</code> (<em>The Extra Themes</em>, <em>The teams guiding Omarchy</em>, …), and otherwise stay put. The homepage was the thing that had outgrown itself. The inside of the site mostly needs a hat that fits.</p>
+
+        <h2>Theme dots on inner pages</h2>
+        <p>Optional. The homepage should keep them because the product <em>is</em> the theme. Documentation can freeze on Tokyo Night so code samples and screenshots don’t drift under the reader. The tokens still mean a global pass is cheap if you want it later. Click the dots on this page to see the bar and type recolor without a desktop screenshot.</p>
+
+        <h2>Drop-in</h2>
+        <p>This is static HTML and CSS, the same shape as <code>omarchy-site</code> today. The homepage is <a href="/">index.html</a>. No framework. The wordmark is the official ASCII, shrunk into the bar via the existing SVG in <code>/brand</code>.</p>
+      </article>
+    </main>
+
+    <footer class="footer wrap">
+      <p><a href="/">Back to the homepage</a></p>
+      <p><a class="wink" href="https://omarchs.fyi">Long may it compile.</a></p>
+    </footer>
+  </body>
+</html>

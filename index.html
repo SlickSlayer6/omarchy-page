@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en" data-theme="catppuccin">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Omarchy — Beautiful, Fun &amp; Opinionated Linux by DHH</title>
+    <meta name="description" content="Beautiful, Fun &amp; Opinionated Linux by DHH. The malleable OS for the age of agents.">
+    <meta name="theme-color" content="#1e1e2e">
+
+    <meta property="og:site_name" content="Omarchy">
+    <meta property="og:title" content="Omarchy">
+    <meta property="og:description" content="Beautiful, Fun &amp; Opinionated Linux by DHH">
+    <meta property="og:image" content="https://omarchy.org/assets/images/opengraph.png">
+    <meta property="og:url" content="https://omarchy.org">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:title" content="Omarchy">
+    <meta name="twitter:description" content="Beautiful, Fun &amp; Opinionated Linux by DHH">
+    <meta name="twitter:image" content="https://omarchy.org/assets/images/opengraph.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/fonts.css">
+    <link rel="stylesheet" href="/assets/css/root.css">
+    <link rel="stylesheet" href="/assets/css/site.css">
+
+    <script>
+      (function () {
+        var allowed = ['catppuccin', 'tokyo-night', 'nord', 'everforest', 'retro-82'];
+        var theme = 'catppuccin';
+        try {
+          var query = new URLSearchParams(location.search).get('theme');
+          var stored = localStorage.getItem('omarchy-homepage-theme');
+          if (allowed.indexOf(query) !== -1) theme = query;
+          else if (allowed.indexOf(stored) !== -1) theme = stored;
+        } catch (e) {}
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+
+    <script src="/assets/js/script.js" type="module"></script>
+  </head>
+
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+
+    <div class="notification">
+      <a href="https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million">Omacom Foundation launches with <s>$8</s> $10 million</a>
+    </div>
+
+    <header class="bar">
+      <a class="bar__brand" href="/" aria-label="Omarchy">
+        <span class="bar__logo" aria-hidden="true"></span>
+        <span class="bar__wordmark" aria-hidden="true"></span>
+      </a>
+
+      <nav class="bar__links" aria-label="Primary">
+        <a href="https://omarchy.org/manual/">Manual</a>
+        <a href="https://omarchy.org/news/">News</a>
+        <a href="https://github.com/omacom/omarchy">GitHub</a>
+        <a href="https://discord.gg/tXFUdasqhY">Discord</a>
+      </nav>
+
+      <div class="bar__theme">
+        <span class="bar__theme-name" data-theme-name aria-hidden="true">catppuccin</span>
+        <div class="switcher" role="radiogroup" aria-label="Desktop theme">
+          <button class="switcher__dot" type="button" role="radio" aria-checked="true" data-theme-set="catppuccin" style="--dot:#cba6f7" title="Catppuccin">
+            <span class="visually-hidden">Catppuccin</span>
+          </button>
+          <button class="switcher__dot" type="button" role="radio" aria-checked="false" data-theme-set="tokyo-night" style="--dot:#7aa2f7" title="Tokyo Night">
+            <span class="visually-hidden">Tokyo Night</span>
+          </button>
+          <button class="switcher__dot" type="button" role="radio" aria-checked="false" data-theme-set="nord" style="--dot:#88c0d0" title="Nord">
+            <span class="visually-hidden">Nord</span>
+          </button>
+          <button class="switcher__dot" type="button" role="radio" aria-checked="false" data-theme-set="everforest" style="--dot:#a7c080" title="Everforest">
+            <span class="visually-hidden">Everforest</span>
+          </button>
+          <button class="switcher__dot" type="button" role="radio" aria-checked="false" data-theme-set="retro-82" style="--dot:#faa968" title="Retro 82">
+            <span class="visually-hidden">Retro 82</span>
+          </button>
+        </div>
+      </div>
+
+      <details class="bar__more">
+        <summary>Menu</summary>
+        <div class="bar__more-panel">
+          <a href="https://iso.omarchy.org/omarchy-4.0.1.iso">Download ISO</a>
+          <a href="https://omarchy.org/manual/">Manual</a>
+          <a href="https://omarchy.org/news/">News</a>
+          <a href="https://github.com/omacom/omarchy">GitHub</a>
+          <a href="https://discord.gg/tXFUdasqhY">Discord</a>
+        </div>
+      </details>
+    </header>
+
+    <main id="content">
+      <header class="hero wrap">
+        <div class="hero__copy">
+          <h1>Beautiful, Fun &amp; Opinionated Linux by <a href="https://dhh.dk">DHH</a></h1>
+          <p class="hero__sub">The malleable OS for the age of agents. Where you can vibe your way through every alteration, tweak, and desire. <a href="https://omarchs.fyi">Be the Omarch</a> and command your agent!</p>
+          <div class="hero__actions">
+            <a class="button" href="https://iso.omarchy.org/omarchy-4.0.1.iso">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="m9.47363 4.01687c.77167.00015 1.39727.62585 1.39747 1.39747 0 .7718-.6257 1.39829-1.39747 1.39843h-4.625c-.66518.00006-1.17367.17068-1.52539.5127-.34225.34225-.51364.86071-.51367 1.55469v14.24194c0 .694.17139 1.2124.51367 1.5547.35173.3517.86001.5282 1.52539.5283h22.28807c.6561 0 1.1599-.1766 1.5117-.5283.3613-.3423.542-.8607.542-1.5547v-14.24194c0-.69398-.1807-1.21244-.542-1.55469-.3517-.34214-.8558-.5127-1.5117-.5127h-4.624c-.7719 0-1.3984-.62654-1.3984-1.39843.0002-.77171.6266-1.39747 1.3984-1.39747h4.8096c1.5402.00002 2.705.3903 3.4941 1.16993.789.77963 1.1836 1.93518 1.1836 3.46582v14.71258c0 1.5305-.3947 2.6853-1.1836 3.4649-.7891.7796-1.9539 1.1699-3.4941 1.1699h-22.64457c-1.54021 0-2.70501-.3903-3.49414-1.1699-.788897-.7796-1.18354196-1.9344-1.18359-3.4649v-14.71258c0-1.53064.394563-2.68619 1.18359-3.46582.78913-.77963 1.95393-1.16991 3.49414-1.16993z"/><path d="m16.0078 0c.3832.00005683.7111.136008.9834.408203.2825.27241.4238.590889.4238.954097v14.2481l-.1211 2.2548.8018-.9687 2.1494-2.2998c.2522-.2825.5652-.4238.9385-.4238.3429 0 .6358.1156.8779.3476.2522.2321.378.5203.378.8633-.0001.3328-.1314.6359-.3936.9082l-4.9785 4.7969c-.1816.1715-.3588.2926-.5303.3632-.1714.0706-.3478.1065-.5293.1065-.1816 0-.3587-.0358-.5303-.1065-.1714-.0706-.3533-.1918-.5449-.3632l-4.96385-4.7969c-.27233-.2723-.40812-.5754-.4082-.9082 0-.343.12114-.6312.36328-.8633.24207-.2319.53497-.3476.87797-.3476.3933 0 .711.1413.9531.4238l2.164 2.2998.8028.9687-.1211-2.2548v-14.2481c0-.363208.1358-.681687.4082-.954097.2824-.27226.6157-.408203.999-.408203z" fill="currentColor"/></svg>
+              <span>Download ISO 4.0.1</span>
+            </a>
+            <a class="button button--ghost" href="https://omarchy.org/manual/">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="m0 4.49992c0-.3978.158025-.77931.439312-1.0606s.662798-.43931 1.060598-.43931h8.50549c2.4538 0 4.6337 1.17992 5.9996 3.00181.6982-.9334 1.6047-1.69085 2.6474-2.212 1.0426-.52115 2.1926-.7916 3.3582-.78981h8.4895c.3978 0 .7793.15802 1.0606.43931s.4393.6628.4393 1.0606v20.99868c0 .3978-.158.7793-.4393 1.0606s-.6628.4393-1.0606.4393h-9.0134c-.591 0-1.1761.1164-1.722.3425-.546.2261-1.042.5576-1.4598.9754l-1.244 1.2419c-.2812.2809-.6624.4387-1.0599.4387s-.7787-.1578-1.0599-.4387l-1.244-1.2419c-.4178-.4178-.9138-.7493-1.4598-.9754-.5459-.2261-1.131-.3425-1.722-.3425h-9.01539c-.3978 0-.779311-.158-1.060598-.4393s-.439312-.6628-.439312-1.0606zm14.5011 20.64668.008-10.1453-.004-4.5058c-.0011-1.19267-.4756-2.33616-1.3194-3.17916-.8437-.84299-1.9876-1.31652-3.1803-1.31652h-7.00559v17.99888h7.51349c1.4108-.0001 2.793.3978 3.9878 1.1479zm3.0078-14.6471-.008 14.6431c1.1942-.7477 2.5748-1.1442 3.9838-1.1439h7.5135v-17.99888h-6.9896c-1.1934 0-2.3379.47408-3.1818 1.31794-.8438.84386-1.3179 1.98838-1.3179 3.18174z" fill="currentColor"/></svg>
+              <span>Read the Manual</span>
+            </a>
+          </div>
+        </div>
+
+        <figure class="desktop">
+          <div class="desktop__window">
+            <img data-desktop src="/assets/images/desktop/catppuccin.webp" width="1600" height="900" alt="Omarchy desktop · catppuccin">
+          </div>
+          <script>
+            (function () {
+              var theme = document.documentElement.dataset.theme;
+              if (!theme) return;
+              if (theme !== 'catppuccin') {
+                var img = document.querySelector('[data-desktop]');
+                img.src = '/assets/images/desktop/' + theme + '.webp';
+                img.alt = 'Omarchy desktop · ' + theme;
+              }
+              document.querySelectorAll('[data-theme-name]').forEach(function (el) {
+                el.textContent = theme;
+              });
+            })();
+          </script>
+          <figcaption class="desktop__meta">
+            <p class="desktop__caption"><strong data-theme-name>catppuccin</strong></p>
+          </figcaption>
+        </figure>
+      </header>
+
+      <section class="beats wrap" aria-label="Beautiful, fun, and opinionated">
+        <article class="beat">
+          <h2>Beautiful</h2>
+          <p>A new theme is a new machine. One hundred and forty-six of them from the community, on top of the ones that ship in the box.</p>
+          <div class="thumbs">
+            <a href="https://omarchy.org/themes/"><img src="/assets/images/themes/gold-rush.webp" width="1200" height="675" alt="Gold Rush theme" loading="lazy" decoding="async"></a>
+            <a href="https://omarchy.org/themes/"><img src="/assets/images/themes/synthwave-84.webp" width="1200" height="675" alt="Synthwave '84 theme" loading="lazy" decoding="async"></a>
+            <a href="https://omarchy.org/themes/"><img src="/assets/images/themes/rose-pine-dark.webp" width="1200" height="675" alt="Rose Pine Dark theme" loading="lazy" decoding="async"></a>
+            <a href="https://omarchy.org/themes/"><img src="/assets/images/themes/evergarden.webp" width="1200" height="675" alt="Evergarden theme" loading="lazy" decoding="async"></a>
+          </div>
+          <a class="beat__more" href="https://omarchy.org/themes/">All extra themes</a>
+        </article>
+
+        <article class="beat">
+          <h2>Fun</h2>
+          <p>People put this on a mini PC, a folding laptop stack, a desk full of split keyboards. Then they send pictures.</p>
+          <div class="desks">
+            <a href="https://omarchy.org/workstations/"><img src="/assets/images/workstations/thumbs/20250809_093527.webp" width="900" height="675" alt="A single-monitor Omarchy workstation" loading="lazy" decoding="async"></a>
+            <a href="https://omarchy.org/workstations/"><img src="/assets/images/workstations/thumbs/20250819_130901.webp" width="900" height="675" alt="A three-screen Omarchy laptop setup" loading="lazy" decoding="async"></a>
+            <a href="https://omarchy.org/workstations/"><img src="/assets/images/workstations/thumbs/6a74444a-0a73-46bc-817d-bce9c9c6c0e6.webp" width="900" height="675" alt="An ultrawide Omarchy desk with split keyboards" loading="lazy" decoding="async"></a>
+          </div>
+          <a class="beat__more" href="https://omarchy.org/workstations/">Workstations</a>
+          ·
+          <a class="beat__more" href="https://supply.37signals.com/collections/omarchy">Merch</a>
+          ·
+          <a class="beat__more" href="https://omarchy.org/air/">AIR</a>
+        </article>
+
+        <article class="beat">
+          <h2>Opinionated</h2>
+          <p>Tiling. Keyboard first. Ready out of the box. Yours to break after that. <kbd>Super + Space</kbd> is the menu; <kbd>Super + K</kbd> is every hotkey.</p>
+          <dl class="keys">
+            <div>
+              <dt>Super + Space</dt>
+              <dd>Omarchy menu</dd>
+            </div>
+            <div>
+              <dt>Super + Return</dt>
+              <dd>Terminal</dd>
+            </div>
+            <div>
+              <dt>Super + K</dt>
+              <dd>All hotkeys</dd>
+            </div>
+            <div>
+              <dt>Super + Ctrl + Shift + Space</dt>
+              <dd>Pick a theme</dd>
+            </div>
+          </dl>
+          <a class="beat__more" href="https://omarchy.org/manual/hotkeys">The rest of the manual</a>
+        </article>
+      </section>
+
+      <section class="watch wrap" aria-label="Videos">
+        <figure class="video">
+          <button class="video__facade" type="button" data-video="F7fe9pa8OeE" data-title="Omarchy introduction video" aria-label="Play: Omarchy introduction video">
+            <img src="/assets/images/video/omarchy-quattro.webp" width="1280" height="720" alt="Omarchy Quattro by David Heinemeier Hansson" decoding="async">
+            <span class="video__play" aria-hidden="true">
+              <svg viewBox="0 0 68 48"><path d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A89.7 89.7 0 0 0 0 24a89.7 89.7 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A89.7 89.7 0 0 0 68 24a89.7 89.7 0 0 0-1.5-16.3z" fill="#f00"/><path d="M27 34.3 44.8 24 27 13.7z" fill="#fff"/></svg>
+            </span>
+          </button>
+          <figcaption>The introduction — by DHH</figcaption>
+        </figure>
+
+        <figure class="video">
+          <button class="video__facade" type="button" data-video="9SDkU5VDQEQ" data-title="You need to switch to Linux RIGHT NOW!! by NetworkChuck" aria-label="Play: You need to switch to Linux RIGHT NOW!! by NetworkChuck">
+            <img src="/assets/images/video/networkchuck.webp" width="1280" height="720" alt="You need to switch to Linux RIGHT NOW!! by NetworkChuck" decoding="async">
+            <span class="video__play" aria-hidden="true">
+              <svg viewBox="0 0 68 48"><path d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A89.7 89.7 0 0 0 0 24a89.7 89.7 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A89.7 89.7 0 0 0 68 24a89.7 89.7 0 0 0-1.5-16.3z" fill="#f00"/><path d="M27 34.3 44.8 24 27 13.7z" fill="#fff"/></svg>
+            </span>
+          </button>
+          <figcaption>“You need to switch to Linux RIGHT NOW!!” — NetworkChuck</figcaption>
+        </figure>
+      </section>
+
+      <nav class="directory wrap" aria-label="The rest of Omarchy">
+        <div>
+          <h2>Get it</h2>
+          <ul>
+            <li><a href="https://iso.omarchy.org/omarchy-4.0.1.iso">ISO 4.0.1</a></li>
+            <li><a href="https://omarchy.org/manual/">Manual</a></li>
+            <li><a href="https://omarchyplugins.com/">Plugins</a></li>
+            <li><a href="https://github.com/omacom/omarchy">GitHub</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Learn it</h2>
+          <ul>
+            <li><a href="https://omarchy.org/news/">News</a></li>
+            <li><a href="https://omarchy.org/themes/">Themes</a></li>
+            <li><a href="https://omarchy.org/security/">Security</a></li>
+            <li><a href="https://omarchy.org/manual/hotkeys">Hotkeys</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Live with it</h2>
+          <ul>
+            <li><a href="https://discord.gg/tXFUdasqhY">Discord</a></li>
+            <li><a href="https://omarchy.org/meetups/">Meetups</a></li>
+            <li><a href="https://omarchy.org/workstations/">Workstations</a></li>
+            <li><a href="https://supply.37signals.com/collections/omarchy">Merch</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Fund it</h2>
+          <ul>
+            <li><a href="https://omarchy.org/patrons/">Patrons</a></li>
+            <li><a href="https://omarchy.org/sponsorships/">Sponsorships</a></li>
+            <li><a href="https://omarchy.org/teams/">Teams</a></li>
+            <li><a href="https://omarchy.org/air/">Artists in Residence</a></li>
+          </ul>
+        </div>
+      </nav>
+    </main>
+
+    <footer class="footer wrap">
+      <p>Looking to become a partner or patron of Omarchy? Write <a href="mailto:david@omarchy.org">david@omarchy.org</a></p>
+      <p>Incubated at <a href="https://37signals.com">37signals</a> (makers of <a href="https://basecamp.com">Basecamp</a> and <a href="https://hey.com">HEY</a>) · Sponsored hosting by <a href="https://cloudflare.com">Cloudflare</a></p>
+      <p><a class="wink" href="https://omarchs.fyi">Long may it compile.</a></p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+/* Palettes are the stock Omarchy colors.toml values, mapped onto the
+   tokens the current site already uses. Catppuccin is the default so
+   a first paint without JS still matches the hero. */
+
+:root,
+[data-theme="catppuccin"] {
+  --rgb-background: 30, 30, 46;
+  --rgb-surface: 49, 50, 68;
+  --rgb-muted: 88, 91, 112;
+  --rgb-text: 186, 194, 222;
+  --rgb-bright: 205, 214, 244;
+  --rgb-accent: 137, 180, 250;
+  --rgb-link: 148, 226, 213;
+  --rgb-green: 166, 227, 161;
+  --rgb-hover: 245, 194, 231;
+  --rgb-black: 0, 0, 0;
+  --rgb-white: 255, 255, 255;
+  --swatch: #cba6f7;
+}
+
+[data-theme="tokyo-night"] {
+  --rgb-background: 26, 27, 38;
+  --rgb-surface: 36, 40, 59;
+  --rgb-muted: 65, 72, 104;
+  --rgb-text: 122, 162, 247;
+  --rgb-bright: 192, 202, 245;
+  --rgb-accent: 122, 162, 247;
+  --rgb-link: 125, 207, 255;
+  --rgb-green: 158, 206, 106;
+  --rgb-hover: 180, 249, 248;
+  --swatch: #7aa2f7;
+}
+
+[data-theme="nord"] {
+  --rgb-background: 46, 52, 64;
+  --rgb-surface: 59, 66, 82;
+  --rgb-muted: 76, 86, 106;
+  --rgb-text: 216, 222, 233;
+  --rgb-bright: 236, 239, 244;
+  --rgb-accent: 129, 161, 193;
+  --rgb-link: 136, 192, 208;
+  --rgb-green: 163, 190, 140;
+  --rgb-hover: 143, 188, 187;
+  --swatch: #88c0d0;
+}
+
+[data-theme="everforest"] {
+  --rgb-background: 45, 53, 59;
+  --rgb-surface: 52, 63, 68;
+  --rgb-muted: 71, 82, 88;
+  --rgb-text: 211, 198, 170;
+  --rgb-bright: 211, 198, 170;
+  --rgb-accent: 127, 187, 179;
+  --rgb-link: 131, 192, 146;
+  --rgb-green: 167, 192, 128;
+  --rgb-hover: 219, 188, 127;
+  --swatch: #a7c080;
+}
+
+[data-theme="retro-82"] {
+  --rgb-background: 5, 24, 46;
+  --rgb-surface: 10, 37, 64;
+  --rgb-muted: 42, 107, 120;
+  --rgb-text: 167, 201, 198;
+  --rgb-bright: 246, 220, 172;
+  --rgb-accent: 250, 169, 104;
+  --rgb-link: 140, 191, 184;
+  --rgb-green: 2, 131, 145;
+  --rgb-hover: 233, 123, 60;
+  --swatch: #faa968;
+}
+
+:root {
+  --color-background: rgb(var(--rgb-background));
+  --color-surface: rgb(var(--rgb-surface));
+  --color-muted: rgb(var(--rgb-muted));
+  --color-text: rgb(var(--rgb-text));
+  --color-bright: rgb(var(--rgb-bright));
+  --color-accent: rgb(var(--rgb-accent));
+  --color-link: rgb(var(--rgb-link));
+  --color-green: rgb(var(--rgb-green));
+  --color-hover: rgb(var(--rgb-hover));
+  --color-black: rgb(var(--rgb-black));
+  --color-white: rgb(var(--rgb-white));
+
+  --border-color: rgb(var(--rgb-muted) / 0.7);
+  --border-width: max(1px, 0.0625em);
+
+  --font-family: 'JetBrains Mono', ui-monospace, monospace;
+  --font-size: clamp(0.8125rem, 0.62rem + 0.55vw, 1rem);
+  --font-size-small: 80%;
+  --font-size-medium: 125%;
+  --font-size-large: 160%;
+
+  --line-height: 1.45;
+
+  --space-small: 0.5em;
+  --space-medium: 1em;
+  --space-neutral: 1.5em;
+  --space-large: 2em;
+  --space-x-large: 3em;
+  --space-xx-large: 4em;
+  --space-xxx-large: 5em;
+
+  --measure: 90em;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+
+  --radius: 0.4em;
+  --transition: 0.15s cubic-bezier(0.33, 1, 0.68, 1);
+
+  --window-shadow:
+    0 0 0 1px rgb(var(--rgb-black) / 0.3),
+    0 0.3em 2em -1.2em rgb(var(--rgb-black) / 0.1),
+    0 0.6em 2.4em -1.6em rgb(var(--rgb-black) / 0.2),
+    0 0.9em 2.8em -2em rgb(var(--rgb-black) / 0.3),
+    0 1.2em 3.2em -2.4em rgb(var(--rgb-black) / 0.45);
+}
